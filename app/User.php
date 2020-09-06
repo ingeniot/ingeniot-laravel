@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
-
+    //protected $table='users';//vincula el modelo con la tabla SQL
     /**
      * The attributes that are mass assignable.
      *
@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'token',
     ];
 
     /**
@@ -36,7 +36,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-     // vincula con el modelo Device (un customer puede tener varios devices)
+
    // vinculacion con el modelo customer (muchos a uno) Devuelve el objeto customeer al que pertenece el Userusuarios)
     public function customer(){
     return $this->belongsTo('App\Customer');  
